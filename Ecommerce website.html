@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>E-Commerce Portal</title>
+<style>
+    body { margin: 0; font-family: Arial; background: #f4f4f4; }
+    header { background: #007bff; color: white; padding: 15px; text-align: center; }
+    nav { background: #003d80; padding: 12px; text-align: center; }
+    nav a {
+        color: white; margin: 15px; text-decoration: none;
+        font-weight: bold; cursor: pointer;
+    }
+    section { padding: 20px; display: none; }
+    .active { display: block; }
+
+    
+    .product-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+    .product {
+        width: 240px; background: white; padding: 10px;
+        border-radius: 10px; box-shadow: 0 0 5px #aaa;
+        text-align: center;
+    }
+    .product img {
+        width: 100%; height: 180px;
+        object-fit: cover; border-radius: 8px;
+    }
+
+    
+    input, textarea {
+        width: 300px; padding: 10px; margin: 8px 0;
+        display: block; border-radius: 5px; border: 1px solid #aaa;
+    }
+
+    button {
+        padding: 10px 20px; background: #007bff; color: white;
+        border: none; border-radius: 5px; cursor: pointer;
+        margin-top: 5px;
+    }
+
+    ul { list-style: square; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>My E-Commerce Portal</h1>
+</header>
+
+<nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('products')">Product Items</a>
+    <a onclick="showPage('register')">Register</a>
+    <a onclick="showPage('login')">Login</a>
+    <a onclick="showPage('orders')">Orders</a>
+    <a onclick="showPage('wishlist')">Wishlist</a>
+    <a onclick="showPage('reviews')">Reviews</a>
+    <a onclick="showPage('customer')">Customer Care</a>
+    <a onclick="showPage('report')">Reporting</a>
+    <a onclick="showPage('about')">About Us</a>
+</nav>
+
+
+<section id="home" class="active">
+    <h2>Welcome to Our E-Commerce Store!</h2>
+    <p>Explore the best products from all trending categories.</p>
+</section>
+
+
+<section id="products">
+    <h2>Product Categories</h2>
+
+    <div class="product-grid">
+
+        
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475" />
+            <h3>T-Shirt</h3>
+            <p>₹499</p>
+            <button onclick="addWishlist('T-Shirt')">Wishlist</button>
+            <button onclick="addOrder('T-Shirt')">Order Now</button>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" />
+            <h3>Shoes</h3>
+            <p>₹1499</p>
+            <button onclick="addWishlist('Shoes')">Wishlist</button>
+            <button onclick="addOrder('Shoes')">Order Now</button>
+        </div>
+
+        
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" />
+            <h3>Face Serum</h3>
+            <p>₹899</p>
+            <button onclick="addWishlist('Face Serum')">Wishlist</button>
+            <button onclick="addOrder('Face Serum')">Order Now</button>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df" />
+            <h3>Moisturizer</h3>
+            <p>₹699</p>
+            <button onclick="addWishlist('Moisturizer')">Wishlist</button>
+            <button onclick="addOrder('Moisturizer')">Order Now</button>
+        </div>
+
+        
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" />
+            <h3>Smartwatch</h3>
+            <p>₹2999</p>
+            <button onclick="addWishlist('Smartwatch')">Wishlist</button>
+            <button onclick="addOrder('Smartwatch')">Order Now</button>
+        </div>
+
+       
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353" />
+            <h3>Home Decor Lamp</h3>
+            <p>₹1299</p>
+            <button onclick="addWishlist('Decor Lamp')">Wishlist</button>
+            <button onclick="addOrder('Decor Lamp')">Order Now</button>
+        </div>
+
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74" />
+            <h3>Yoga Mat</h3>
+            <p>₹499</p>
+            <button onclick="addWishlist('Yoga Mat')">Wishlist</button>
+            <button onclick="addOrder('Yoga Mat')">Order Now</button>
+        </div>
+
+    </div>
+</section>
+
+
+<section id="register">
+    <h2>User Registration</h2>
+    <input type="text" id="regName" placeholder="Enter Name">
+    <input type="email" id="regEmail" placeholder="Enter Email">
+    <input type="password" id="regPass" placeholder="Enter Password">
+    <button onclick="registerUser()">Register</button>
+    <p id="regMsg"></p>
+</section>
+
+<section id="login">
+    <h2>User Login</h2>
+    <input type="email" id="logEmail" placeholder="Enter Email">
+    <input type="password" id="logPass" placeholder="Enter Password">
+    <button onclick="loginUser()">Login</button>
+    <p id="logMsg"></p>
+</section>
+
+
+<section id="orders">
+    <h2>Your Orders</h2>
+    <ul id="orderList"></ul>
+</section>
+
+<section id="wishlist">
+    <h2>Your Wishlist</h2>
+    <ul id="wishlistItems"></ul>
+</section>
+
+
+<section id="reviews">
+    <h2>Customer Reviews</h2>
+    <textarea id="reviewText" placeholder="Write a review..."></textarea>
+    <button onclick="addReview()">Submit Review</button>
+    <ul id="reviewList"></ul>
+</section>
+
+
+<section id="customer">
+    <h2>Customer Care</h2>
+    <textarea id="careMsg" placeholder="Write your issue..."></textarea>
+    <button onclick="sendCare()">Send</button>
+    <p id="careStatus"></p>
+</section>
+
+
+<section id="report">
+    <h2>Admin Report</h2>
+    <button onclick="generateReport()">Generate</button>
+    <pre id="reportOutput"></pre>
+</section>
+
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>This e-commerce project is created using HTML, CSS, and JavaScript.</p>
+</section>
+
+<script>
+
+function showPage(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+
+let users = [];
+let wishlist = [];
+let orders = [];
+let reviews = [];
+
+
+function registerUser() {
+    let name = regName.value.trim();
+    let email = regEmail.value.trim();
+    let pass = regPass.value.trim();
+
+    if (!name || !email || !pass) {
+        regMsg.textContent = "All fields are required!";
+        regMsg.style.color = "red";
+        return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+        regMsg.textContent = "Enter a valid email!";
+        regMsg.style.color = "red";
+        return;
+    }
+
+    users.push({ name, email, pass });
+    regMsg.textContent = "Registration successful!";
+    regMsg.style.color = "green";
+}
+
+
+function loginUser() {
+    let email = logEmail.value.trim();
+    let pass = logPass.value.trim();
+
+    let user = users.find(u => u.email === email && u.pass === pass);
+
+    if (user) {
+        logMsg.textContent = "Login Successful!";
+        logMsg.style.color = "green";
+    } else {
+        logMsg.textContent = "Invalid email or password!";
+        logMsg.style.color = "red";
+    }
+}
+
+
+function addWishlist(item) {
+    wishlist.push(item);
+    wishlistItems.innerHTML = wishlist.map(i => `<li>${i}</li>`).join("");
+}
+
+function addOrder(item) {
+    orders.push(item);
+    orderList.innerHTML = orders.map(i => `<li>${i}</li>`).join("");
+}
+
+
+function addReview() {
+    let text = reviewText.value.trim();
+    if (text) {
+        reviews.push(text);
+        reviewList.innerHTML = reviews.map(i => `<li>${i}</li>`).join("");
+        reviewText.value = "";
+    }
+}
+
+
+function sendCare() {
+    let msg = careMsg.value.trim();
+    if (msg) {
+        careStatus.textContent = "Your message has been sent!";
+        careStatus.style.color = "green";
+        careMsg.value = "";
+    }
+}
+
+
+function generateReport() {
+    let report = `
+Total Users Registered: ${users.length}
+Total Items in Wishlist: ${wishlist.length}
+Total Orders Placed: ${orders.length}
+Total Reviews Submitted: ${reviews.length}
+    `;
+    reportOutput.textContent = report;
+}
+</script>
+
+</body>
+</html>
